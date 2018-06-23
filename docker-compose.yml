@@ -6,9 +6,9 @@ services:
   delos:
     container_name: rap2-delos
     # build from ./Dockerfile
-#    build: .
+    build: .
     # build from images
-    image: blackdog1987/rap2-delos:1.0.0
+    # image: blackdog1987/rap2-delos:1.0.0
     environment:
       # if you have your own mysql, config it here, and disable the 'mysql' config blow
       - MYSQL_URL=rap2-mysql # links will maintain /etc/hosts, just use 'container_name'
@@ -49,9 +49,10 @@ services:
   mysql:
     container_name: rap2-mysql
     image: mysql:5.7.22
+    privileged: true
     # expose 33306 to client (navicat)
-    #ports:
-    #   - 33306:3306
+    ports:
+       - 33306:3306
     volumes:
       # change './docker/mysql/volume' to your own path
       # WARNING: without this line, your data will be lost.
